@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <>
-      I will become a better developer
+      I will be a face-recognition page
     </>
   );
 }
