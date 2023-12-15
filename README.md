@@ -12,6 +12,7 @@ Framework and Technology Stack (MERN with MongoDB):
 **Frontend with React:**
 
 Utilize React.js for creating an interactive and responsive user interface.
+Also using Bootstrap for UI Framework
 **Backend with Node.js and Express.js:**
 
 Implement the server-side logic, API endpoints, and interactions with MongoDB.
