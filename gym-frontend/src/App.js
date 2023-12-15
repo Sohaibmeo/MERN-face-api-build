@@ -1,8 +1,11 @@
+import Home from "./components/Home";
+
+
 function App() {
   return (
-    <div className="App">
-      I will become a better developer
-    </div>
+    <>
+      <Home />
+    </>
   );
 }
 
