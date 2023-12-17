@@ -1,0 +1,21 @@
+.webcamWrapper {
+    margin-top: 3%;
+    margin-right: 1%;
+}
+.webcamButton {
+    margin-bottom: 2%;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: black;
+    transition: ease-in 0.5s;
+    border-style: none;
+}
+.webcamButton:hover {
+    background-image: linear-gradient(to left, black, black 50%, #efefef 50%, #efefef);
+    background-size: 200% 100%;
+    transition: ease-in 0.5s;
+    background-position: right;
+    color: #f2e53a;
+    cursor: pointer;
+}

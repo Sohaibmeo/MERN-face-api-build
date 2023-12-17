@@ -1,20 +1,26 @@
 import { useState } from "react";
 import './index.css'
 
-const NewMemberForm = () => {
+const NewMemberForm = ({userImage,setUserImage}) => {
     //removable code just a counter for id since Not making a backend continously
-    const [count,setCount] = useState(1);
     //So I am thinking a logic where I receive the latest UUID from backend I assign that to the user
     const [formData, setFormData] = useState({
+        id: "1",
         name: "",
         email: "",
         weight: 78.6
     })
     const handleSubmit = (event) => {
-        //Will be designed to pass form data to backend later on...
+        //Will be designed to pass form data to backend later on...If we capture an image with a face?
         event.preventDefault();
-        console.log(formData,"id:",count);
-        setCount(prev => prev + 1);
+        console.log("Form Data Without Picture",formData);
+        if(userImage){
+            console.log("Submit this to backend : ",formData,{image:userImage})
+            setUserImage(null);
+            alert('data submitted')
+        }else {
+            alert('set an image first')
+        }
     }
 
     return (
@@ -24,7 +30,7 @@ const NewMemberForm = () => {
                     readOnly
                     id="user-id"
                     name="id"
-                    value={count}
+                    value={1}
                 />
                 <input 
                     id="user-name"
