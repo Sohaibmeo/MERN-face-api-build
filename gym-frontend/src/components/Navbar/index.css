@@ -1,6 +1,14 @@
 .navbarWrapper {
-    background-color: rgb(89, 89, 179);
-    height: 50px;
+    transition-duration: 1s;
+    background-color: rgb(12, 12, 12);
+    height: 100px;
+}
+.scrolledDown {
+    transition-duration: 1s;
+    background-color: rgb(12, 12, 12);
+    position: sticky;
+    top: 0;
+    height: 60px;
 }
 .nav,.leftSide {
     display: flex;
@@ -9,9 +17,6 @@
 }
 p {
     margin: 0;
-}
-.leftSide a p {
-    margin-left: 5px;
 }
 .leftSide a {
     display: flex;
@@ -22,32 +27,32 @@ p {
 .leftSide a img {
     height: 100%;
 }
-.leftSide a img:hover {
-    transform: rotate(359deg);
-    transition-duration: 1s;
-}
 .rightSide {
     display: flex;
     justify-content: baseline;
     align-items: center;
 }
 .rightSide a {
-    color: #fff;
-    background-color: rgb(104, 72, 134);
-    height: 30px;
+    color: #ffffee;
+    height: 100%;
     margin-right: 3px;
     display: flex;
     text-decoration: none;
     align-items: center;
-    border-radius: 10px;
 }
 .rightSide a:hover {
-    background-color: rgb(4, 0, 8);
+    color: #f2e53a;
     transition: 1s;
-    transform: scale(1.2);
-    border-radius: 0px;
 }
 .rightSide a p {
-    width: 100px;
+    width: 124px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bolder;
     text-align: center;
+    cursor: pointer;
+}
+.rightSide a:hover {
+    transition: all ease 0.8s;
+    border-bottom: 10px solid #f2e53a;
 }

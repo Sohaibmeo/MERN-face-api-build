@@ -1,0 +1,43 @@
+.newMemberForm {
+    display: grid;
+    justify-items: center;
+}
+input,button {
+    padding: 10px 0px 10px 0px;
+    margin-top: 2%;
+}
+.buttonForm {
+    margin-bottom: 2%;
+    width: 90%;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #f2e53a;
+    border-style: none;
+}
+.buttonForm:hover {
+    transition: 0.8s ease-out;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.singleRowContainer {
+    margin-top: 2%;
+    display: grid;
+    width: 90%;
+    grid-row: 1;
+}
+#user-id {
+    grid-row: 1;
+    grid-column: 1;
+    margin-right: 1%;
+    width: 98.5%;
+}
+#user-name {
+    width: 98.5%;
+    grid-row: 1;
+    grid-column: 2;
+    margin-left: 1%;
+}
+#user-email, #user-weight {
+    width: 90%;
+}

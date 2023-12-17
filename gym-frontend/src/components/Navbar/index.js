@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
-import Logo from '../../assets/images/logo512.png';
+import Logo from '../../assets/images/Logo.png';
 
 import './index.css'
 
 const Navbar = () => {
+    const [scrollNavbar,setScrollNavbar] = useState(false)
+    useEffect(() => {
+        const handleScroll = () => {
+            const isTop = window.scrollY < 1;
+            if (isTop !== scrollNavbar) {
+              setScrollNavbar(isTop);
+            }
+          };
+          window.addEventListener('scroll', handleScroll);
+          return () => {
+            window.removeEventListener('scroll', handleScroll);
+          };
+    }, [scrollNavbar])
 return (
-    <div className='navbarWrapper'>
+    <div className={`${scrollNavbar ? "navbarWrapper" : "scrolledDown"}`}>
         {/* Upadting this navbar to have only 4 routes and a logo */}
-        <div className='nav'>
+        <div className="nav">
             <div className='leftSide'>
                 <Link to={'/'} >
                     <img src={Logo} alt='Logo'/>
-                    <p>LOGO</p>
+                    {/* <p>LOGO</p> */}
                 </Link> 
             </div>
             <div className='rightSide'>

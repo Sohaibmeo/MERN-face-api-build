@@ -1,8 +1,10 @@
+import './index.css'
+
 const Home = () => {
   return (
-    <>
-      I will be a face-recognition page
-    </>
+    <div className='homeWrapper'>
+      
+    </div>
   );
 }
 

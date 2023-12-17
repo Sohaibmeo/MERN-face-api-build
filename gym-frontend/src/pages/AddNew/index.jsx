@@ -1,8 +1,11 @@
+import NewMemberForm from "../../components/NewMemberForm";
+import './index.css'
+
 const AddNew = () => {
 return (
-    <>
-    I will be a form with an ability to pick up picture from the camera..
-    </>
+    <div className="addMemberWrapper">
+        <NewMemberForm />
+    </div>
 )
 }
 
