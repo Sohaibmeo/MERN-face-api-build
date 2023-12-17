@@ -11,12 +11,15 @@ input,button {
     width: 90%;
     font-weight: bold;
     text-transform: uppercase;
-    background-color: #f2e53a;
+    background-image: linear-gradient(to left, black, black 50%, yellow 50%, yellow);
+    background-size: 200% 100%;
+    color: black;
+    transition: ease-in 0.5s;
     border-style: none;
 }
 .buttonForm:hover {
-    transition: 0.8s ease-out;
-    background-color: black;
+    transition: ease-in 0.5s;
+    background-position: right;
     color: white;
     cursor: pointer;
 }
