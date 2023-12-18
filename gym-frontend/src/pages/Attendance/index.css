@@ -1,0 +1,6 @@
+.attendanceWrapper {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1%;    
+    padding-bottom: 1%;
+}
