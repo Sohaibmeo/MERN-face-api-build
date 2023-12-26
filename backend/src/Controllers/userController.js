@@ -31,7 +31,7 @@ async function getAllUser() {
         response.forEach(doc => {
            responseArr.push(doc.data());
         });
-        console.log("Successfully got all users Length = ", responseArr);
+        console.log("Successfully got all users Length = ", responseArr.length);
         return responseArr;
     } catch (error) {
         console.log("Error Fetching All users ------> ",error);

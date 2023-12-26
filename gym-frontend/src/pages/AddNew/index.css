@@ -1,5 +1,13 @@
 .addMemberWrapper {
+    grid-auto-flow: column;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around;   
     align-items: center;
+    width: 97%;
+   
+}
+@media (max-width : 900px) {
+    .addMemberWrapper{
+        flex-direction: column-reverse;
+    }
 }

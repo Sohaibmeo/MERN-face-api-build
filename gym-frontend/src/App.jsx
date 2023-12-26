@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
-import {Home, AddNew, Attendance} from './pages'
+import { Home, AddNew, Attendance } from './pages';
 import './App.css';
 
 const App = () => {
@@ -8,10 +8,10 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <div className="container">
-        <Routes className="container">
-          <Route exact path="/" Component={Home} />
-          <Route exact path="/new-member" Component={AddNew} />
-          <Route exact path="/attendance" Component={Attendance} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/new-member" element={<AddNew />} />
+          <Route exact path="/attendance" element={<Attendance />} />
         </Routes>
       </div>
     </BrowserRouter>
