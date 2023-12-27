@@ -29,7 +29,7 @@ return (
                 </Link> 
             </div>
             <div className='rightSide'>
-                <Link to={'/'} > <p className='navLink'>Home</p> </Link> 
+                <Link to={'/home'} > <p className='navLink'>Home</p> </Link> 
                 <Link to={'/attendance'} > <p className='navLink'>Attendance</p> </Link> 
                 <Link to={'/new-member'} > <p className='navLink'>Add Member</p> </Link> 
                 <Link to={'/lorem'} > <p className='navLink'>Lorem</p> </Link> 
