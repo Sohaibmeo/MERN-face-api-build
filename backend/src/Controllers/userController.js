@@ -1,18 +1,9 @@
 import { getFirebaseDb,getFirebaseAdmin } from "../Services/firebase.js";
 
-let db;
-function initializeUserDb() {
-    try {
-        db = getFirebaseDb();
-        console.log("-----Connected to Database------");
-    } catch (error) {
-        console.error("Failed to fetch users from database (Controller Catch) -----> ", error);
-    }
-}
-
 //checked and tested
 async function getUserById(id) {
     try {
+        const db = getFirebaseDb();
         const docRef = db.collection("users");
         const response = await docRef.doc(id).get();
         console.log("Successfully retreived a single user ", response.data());
@@ -25,6 +16,7 @@ async function getUserById(id) {
 // checked and tested
 async function getAllUser() {
     try {
+        const db = getFirebaseDb();
         const docRef = db.collection("users");
         const response = await docRef.get();
         let responseArr = [];
@@ -42,6 +34,7 @@ async function getAllUser() {
 // checked and tested
 async function createUser(userId,userBody){
     try {
+        const db = getFirebaseDb();
         const docRef = db.collection("users");
         await docRef.doc(`${userId}`).set(userBody);
         console.log("User added successfully with ID : ",userId);
@@ -54,6 +47,7 @@ async function createUser(userId,userBody){
 // checked and
 async function deleteUser(userId) {
     try {
+        const db = getFirebaseDb();
         const docRef = db.collection("users");
         await docRef.doc(userId).delete();
         console.log("User Deleted Succesfully");
@@ -66,6 +60,7 @@ async function deleteUser(userId) {
 //checked and 
 async function updateUser(userId, userBody) {
     try {
+        const db = getFirebaseDb();
         const docRef = db.collection("users");
         const response = docRef.doc(userId).update(userBody);
         console.log("Updated user : ", userId);
@@ -83,6 +78,7 @@ async function getUserListByName(userName) {
 }
 //tested
 async function assignUserId (){
+    const db = getFirebaseDb();
     const admin = getFirebaseAdmin();
     console.log("---Using Admin Functions----");
     const counterRef = db.collection('counter').doc('user-tracker');
@@ -101,7 +97,6 @@ async function assignUserId (){
 }
 
 export default {
-    initializeUserDb,
     getUserById,
     getAllUser,
     createUser,

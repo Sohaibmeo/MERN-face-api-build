@@ -10,7 +10,7 @@ const Home = () => {
       const getUsers = async() => {
         try {
           const response = await axios.get("http://localhost:8080/users");
-          console.log("Users: ", response.status)
+          console.log("Users: ", response)
           setUserList(response.data);
           setLoading(false)
         } catch (error) {
@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className='homeWrapper'>
       {
-        loading? "Loading": userList.map((data)=><li><img src={data.userImage} alt='Loading'/></li>)
+        loading? "Loading": userList.map((data)=><li key={data}><img src={data.userImage} alt='Loading'/></li>)
       }
     </div>
   );

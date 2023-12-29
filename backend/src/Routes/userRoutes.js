@@ -3,19 +3,16 @@ import userController from '../Controllers/userController.js';
 const router = express.Router()
 
 router.get('/', async(req, res) => {
-    userController.initializeUserDb();
     const response = await userController.getAllUser();
     res.send(response);
 });
 
 router.get('/singleUser', async(req, res) => {
-    userController.initializeUserDb();
     const response = await userController.getUserById(req.body.id);
     res.send(response);
 });
 
 router.post('/createUser', async(req, res) => {
-    userController.initializeUserDb();
     const latestId = await userController.assignUserId()
     console.log("Id to be given to user = ", latestId)
     const response = await userController.createUser(latestId,req.body)
@@ -23,14 +20,12 @@ router.post('/createUser', async(req, res) => {
 });
 
 router.post('/updateUser/:id', async(req, res) => {
-    userController.initializeUserDb();
     await userController.updateUser(req.params.id,req.body)
     res.status(200).json({message: "User Updated Succesfully"})
 });
 
 router.post('/deleteUser/:id', async(req, res) => {
     try {
-        userController.initializeUserDb();
         await userController.deleteUser(req.params.id)
         res.status(200).json({message: "User Deleted Succesfully"})
     } catch (error) {

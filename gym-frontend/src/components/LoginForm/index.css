@@ -1,0 +1,27 @@
+.buttonForm {
+    margin-bottom: 2%;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: linear-gradient(to left, black, black 50%, #efefef 50%, #efefef);
+    background-size: 200% 100%;
+    color: black;
+    transition: ease-in 0.5s;
+    border-style: none;
+}
+.buttonForm:hover {
+    transition: ease-in 0.5s;
+    background-position: right;
+    color: #f2e53a;
+    cursor: pointer;
+}
+input {
+    width: 100%;
+}
+.loginLogo {
+    background-color: black;
+}
+.formWrapper {
+    width:min-content;
+}

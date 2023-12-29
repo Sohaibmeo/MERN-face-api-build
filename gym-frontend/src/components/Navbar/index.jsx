@@ -4,8 +4,12 @@ import Logo from '../../assets/images/Logo.png';
 
 import './index.css'
 
-const Navbar = () => {
+const Navbar = ({token,setToken}) => {
     const [scrollNavbar,setScrollNavbar] = useState(false)
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setToken("")
+    }
     useEffect(() => {
         const handleScroll = () => {
             const isTop = window.scrollY < 1;
@@ -19,7 +23,7 @@ const Navbar = () => {
           };
     }, [scrollNavbar])
 return (
-    <div className={`${scrollNavbar ? "navbarWrapper" : "scrolledDown"}`}>
+    <div className={`${scrollNavbar ? "navbarWrapper" : "scrolledDown"} ${token ? '': 'loginNavbar'}`}>
         {/* Upadting this navbar to have only 4 routes and a logo */}
         <div className="nav">
             <div className='leftSide'>
@@ -29,10 +33,11 @@ return (
                 </Link> 
             </div>
             <div className='rightSide'>
-                <Link to={'/home'} > <p className='navLink'>Home</p> </Link> 
+                <Link to={'/'} > <p className='navLink'>Home</p> </Link> 
                 <Link to={'/attendance'} > <p className='navLink'>Attendance</p> </Link> 
                 <Link to={'/new-member'} > <p className='navLink'>Add Member</p> </Link> 
-                <Link to={'/lorem'} > <p className='navLink'>Lorem</p> </Link> 
+                <Link to={'/lorem'} > <p className='navLink'>Lorem</p> </Link>
+                <button onClick={handleLogout}>Logout</button>
             </div>
         </div>
     </div>

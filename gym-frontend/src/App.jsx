@@ -1,21 +1,40 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from "./components/Navbar";
-import { Home, AddNew, Attendance, Login } from './pages';
 import './App.css';
 
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import Navbar from "./components/Navbar";
+import { Home, AddNew, Attendance, Login } from './pages';
+
 const App = () => {
+  const navigate = useNavigate();
+  const [token,setToken] = useState("");
+  
+  useEffect(()=> {
+    const loader = async () => {
+      if(!token){
+        return navigate("/login");
+      }
+    };
+    loader()
+  },[token,navigate])
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+    <Navbar token={token} setToken={setToken}/>
       <div className="container">
         <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/new-member" element={<AddNew />} />
-          <Route exact path="/attendance" element={<Attendance />} />
+          {token ? 
+            <>
+            <Route exact path="/" element={<Home />} />
+            <Route  path="/new-member" element={<AddNew />} />
+            <Route  path="/attendance" element={<Attendance />} />
+            </> : 
+            <Route  path="/login" element={<Login setToken={setToken} token={token} />} />
+          }
         </Routes>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 
