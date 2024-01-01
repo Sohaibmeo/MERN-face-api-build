@@ -12,6 +12,8 @@ const App = () => {
   
   useEffect(()=> {
     const loader = async () => {
+      //problem in app that you can't directly access a url it refreshed you back to home
+      //TODO: WE CAN SEE THE LOGIN PAGE FOR A SECOND ALSO I THINK THIS LOGIC NEEDS TO BE REVISED FOR SURE
       if(!token){
         return navigate("/login");
       }

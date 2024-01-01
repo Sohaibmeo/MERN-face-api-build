@@ -3,28 +3,39 @@ import adminController from '../Controllers/adminController.js'
 const router = express.Router();
 
 router.post('/create',async(req,res)=>{
-    await adminController.createAdmin(req.body.email,req.body)
-    res.status(200).json({message: "Admin Created Succesfully"})
-});
-
-router.get('/verify/:id',async(req,res)=>{
-    const response = await adminController.verifyAdmin(req.params.id)
-    res.send(response)
-});
-
-router.post('/create-token',async(req,res)=>{
-    console.log("token created ---> ",req.body)
-    res.send({backendToken:"abc123"})
-});
-
-router.post('/verify-token',async(req,res)=>{
-    const response = await adminController.getToken();
-    console.log("Got this request ---> ", req.body)
-    if(req.body.assignedToken === response){
-        res.send(true)
-    }else{
-        res.send(false)
+    try {
+        await adminController.createAdmin(req.body.email,req.body)
+        res.status(200).json({message: "Admin Created Succesfully"})
+    } catch (error) {
+        console.log("Error Creating Admin", error);
+        //error response here
     }
 });
+
+router.get('/login',async(req,res)=>{
+    try {
+        const creds = req.headers.authorization.split(" ")[1];
+        const token = await adminController.Login(creds);
+        if(token){
+            res.send({"token":token});
+        } else{
+            //this is random response TODO
+            res.status(401).json({message: "Wrong creds ?"})
+        }
+    } catch (error) {
+        res.status(401).json({message: error})
+    }
+})
+
+router.post('/verify-token',async(req,res)=>{
+    try {
+        const token = req.body.token;
+        const response = await adminController.verifyToken(token);
+        res.send(response);
+    } catch (error) {
+        console.log("Error verifying",error);
+        res.status(404).json({message:"Verification Failed"})
+    }
+})
 
 export default router;

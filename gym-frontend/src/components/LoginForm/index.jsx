@@ -10,12 +10,21 @@ const LoginForm = ({setToken}) => {
         "email": "",
         "password": ""
     })
+    const currentUser = {
+        email:"sohaibmayo12@gmail.com"
+    }
     const submitHandler = async(event) => {
         event.preventDefault();
         try {
-            const result = await axios.post("http://localhost:8080/admin/create-token",formData)
-            if(result?.data?.backendToken){
-                const assignedToken = result.data.backendToken;
+            const result = await axios.get("http://localhost:8080/admin/login",{
+                auth: {
+                    username: formData.email,
+                    password: formData.password
+                  }
+            })
+            console.log(result)
+            if(result?.data?.token){
+                const assignedToken = result.data.token;
                 setToken(assignedToken);
                 localStorage.setItem('token',JSON.stringify(assignedToken));
                 navigate("/");
@@ -36,10 +45,11 @@ const LoginForm = ({setToken}) => {
                 }
                 //TODO : should encode this body
                 const body = {
-                    "email": "sohaibmayo12@gmail.com",
-                    "assignedToken": JSON.parse(localToken),
+                    "email": currentUser.email,
+                    "token": JSON.parse(localToken),
                 };
                 const response = await axios.post("http://localhost:8080/admin/verify-token",body)
+                console.log("Current Response",response)
                 if(!response.data){
                     throw new Error("Session INVALID")
                 }
