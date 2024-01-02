@@ -27,7 +27,7 @@ const LoginForm = ({setToken}) => {
                 const assignedToken = result.data.token;
                 setToken(assignedToken);
                 localStorage.setItem('token',JSON.stringify(assignedToken));
-                navigate("/");
+                navigate(-2);
             }else {
                 throw new Error("INVALID TOKEN RECEIVED FROM BACKEND")
             }
@@ -36,6 +36,7 @@ const LoginForm = ({setToken}) => {
         }
     }
 //TODO: I think this whole check logic should be somewhere outside cuz its still rendering on ligins
+//TODO: put this into utils and move it way back aswell
     useEffect(()=>{
         const tokenVerification = async() => {
             try {
@@ -43,7 +44,6 @@ const LoginForm = ({setToken}) => {
                 if(!localToken){
                    throw new Error("LOCAL SESSION MISSING")
                 }
-                //TODO : should encode this body
                 const body = {
                     "email": currentUser.email,
                     "token": JSON.parse(localToken),
@@ -54,7 +54,7 @@ const LoginForm = ({setToken}) => {
                     throw new Error("Session INVALID")
                 }
                 setToken(localToken)
-                navigate("/");
+                navigate(-2);
             } catch (error) {
                 console.error("Error :  "+ error)
                 localStorage.removeItem('token');
@@ -62,7 +62,7 @@ const LoginForm = ({setToken}) => {
             }
         }
         tokenVerification()
-    },[setToken,navigate])
+    },[setToken,navigate,currentUser.email])
     //TODO : Turn this into a loading animation for button when clicked once until the flag says you are gucci
     return(
         <form className="formWrapper" onSubmit={submitHandler}>
@@ -70,6 +70,7 @@ const LoginForm = ({setToken}) => {
             <input 
                 type="text"
                 placeholder='Email'
+                className='inputLogin'
                 name="email"
                 onChange={(e)=> setFormData((prev)=> ({...prev,[e.target.name]:e.target.value}))} 
             />
@@ -77,6 +78,7 @@ const LoginForm = ({setToken}) => {
                 type="password" 
                 name="password"
                 placeholder='Password'
+                className='inputLogin'
                 onChange={(e)=> setFormData((prev)=> ({...prev,[e.target.name]:e.target.value}))}
             />
             <button type="submit" className='buttonForm'>Login</button>

@@ -30,7 +30,7 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels}) => {
                     const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
                     const receivedDescriptorArray = new Float32Array(Object.values(result.descriptor));
                     const bestMatch = faceMatcher.findBestMatch(receivedDescriptorArray);
-                    const matchedUserFirstName = bestMatch.label;
+                    // const matchedUserFirstName = bestMatch.label;
                     console.log("------>",bestMatch);
                   }catch(error) {
                     console.error("Error During Face Recognition",error)

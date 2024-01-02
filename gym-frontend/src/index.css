@@ -4,3 +4,23 @@ body {
     font-size: 16px;
     background-color: rgb(214, 214, 214);
 }
+.buttonForm {
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: linear-gradient(to left, black, black 50%, #efefef 50%, #efefef);
+    background-size: 200% 100%;
+    color: black;
+    transition: ease-in 0.5s;
+    border-style: none;
+}
+.buttonForm:hover {
+    transition: ease-in 0.5s;
+    background-position: right;
+    color: #f2e53a;
+    cursor: pointer;
+}
+input,button,select,label {
+    padding: 10px 0px 10px 0px;
+    margin-top: 2%;
+}

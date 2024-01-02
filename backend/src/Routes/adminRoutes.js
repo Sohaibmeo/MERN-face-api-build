@@ -38,4 +38,20 @@ router.post('/verify-token',async(req,res)=>{
     }
 })
 
+router.post('/contact',async(req,res)=>{
+    try {
+        const message = req.body.message;
+        const number = req.body.number;
+        console.log(`Message: ${message} Number : ${number}`);
+        const forTwillio = {
+            "message": message,
+            "number": '+92'+number
+        }
+        res.send(forTwillio)
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({message: error})
+    }
+})
+
 export default router;

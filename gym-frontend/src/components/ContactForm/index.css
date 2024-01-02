@@ -1,0 +1,10 @@
+.contactForm{
+    display: grid;
+}
+/* .contactField{
+    width: 100%;
+} */
+.message{
+    resize: vertical;
+    height: 200px;
+}
