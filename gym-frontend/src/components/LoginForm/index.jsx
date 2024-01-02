@@ -35,7 +35,7 @@ const LoginForm = ({setToken}) => {
             console.error(error);
         }
     }
-
+//TODO: I think this whole check logic should be somewhere outside cuz its still rendering on ligins
     useEffect(()=>{
         const tokenVerification = async() => {
             try {
@@ -63,7 +63,7 @@ const LoginForm = ({setToken}) => {
         }
         tokenVerification()
     },[setToken,navigate])
-
+    //TODO : Turn this into a loading animation for button when clicked once until the flag says you are gucci
     return(
         <form className="formWrapper" onSubmit={submitHandler}>
             <img src={Logo} alt="Logo Enlarged" className="loginLogo"/>

@@ -14,6 +14,7 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels}) => {
         height: 600
     }
 
+    //improve this to a better version I think...
     const startFaceRecognition = () => {
         if(videoLoaded && userList.length > 0){
             const video = document.getElementById('video');
@@ -30,7 +31,7 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels}) => {
                     const receivedDescriptorArray = new Float32Array(Object.values(result.descriptor));
                     const bestMatch = faceMatcher.findBestMatch(receivedDescriptorArray);
                     const matchedUserFirstName = bestMatch.label;
-                    console.log("------>",matchedUserFirstName);
+                    console.log("------>",bestMatch);
                   }catch(error) {
                     console.error("Error During Face Recognition",error)
                   }

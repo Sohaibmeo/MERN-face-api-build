@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Navbar from "./components/Navbar";
-import { Home, AddNew, Attendance, Login } from './pages';
+import { Home, AddNew, Attendance, Login, Contact } from './pages';
 
 const App = () => {
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route  path="/new-member" element={<AddNew />} />
             <Route  path="/attendance" element={<Attendance />} />
+            <Route  path="/contact" element={<Contact />} />
             </> : 
             <Route  path="/login" element={<Login setToken={setToken} token={token} />} />
           }

@@ -36,7 +36,7 @@ return (
                 <Link to={'/'} > <p className='navLink'>Home</p> </Link> 
                 <Link to={'/attendance'} > <p className='navLink'>Attendance</p> </Link> 
                 <Link to={'/new-member'} > <p className='navLink'>Add Member</p> </Link> 
-                <Link to={'/lorem'} > <p className='navLink'>Lorem</p> </Link>
+                <Link to={'/contact'} > <p className='navLink'>Contact</p> </Link>
                 <button onClick={handleLogout}>Logout</button>
             </div>
         </div>

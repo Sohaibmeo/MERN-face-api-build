@@ -131,7 +131,7 @@ const NewMemberForm = ({formData,setFormData}) => {
                     checked={formData.feeReceivingCheck || false}
                     onChange={(e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.checked }))}
                 />
-                <label for='user-fee-paid' >Fee Received? </label>
+                <label htmlFor='user-fee-paid' >Fee Received? </label>
             </div>
 
             <button type="submit" className="buttonForm">

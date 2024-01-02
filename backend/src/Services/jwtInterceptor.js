@@ -5,7 +5,7 @@ dotenv.config();
 const getnewToken = async(email) => {
     try {
         const user = email;
-        const token = jwt.sign({user},process.env.SECRET_JWT_TOKEN,{ expiresIn: 200 })
+        const token = jwt.sign({user},process.env.SECRET_JWT_TOKEN,{ expiresIn: 20 })
         return token
     } catch (error) {
         console.log("Problems with token generation",error)
@@ -18,7 +18,7 @@ const verifyRequest = (token) => {
         const decode = jwt.verify(token,process.env.SECRET_JWT_TOKEN);
         return decode;
     } catch (error) {
-        console.log("verification failed ",error)
+        console.log("verification failed",error.message)
         return false
     }
 }

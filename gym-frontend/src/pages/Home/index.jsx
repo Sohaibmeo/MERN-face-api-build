@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className='homeWrapper'>
       {
-        loading? "Loading": userList.map((data)=><li key={data}><img src={data.userImage} alt='Loading'/></li>)
+        loading? "Loading": userList.map((data,index)=><li key={index}><img src={data.userImage} alt='Loading'/></li>)
       }
     </div>
   );
