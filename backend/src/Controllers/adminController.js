@@ -1,6 +1,7 @@
 import { getFirebaseDb,getFirebaseAdmin } from '../Services/firebase.js'
 import jwtInterceptor from '../Services/jwtInterceptor.js'
 import bcrypt from 'bcrypt'
+import createMessage from '../Services/twilio.js'
 
 const Login = async(creds) => {
     try {
@@ -64,4 +65,10 @@ const createAdmin = async(adminId,adminBody) => {
     }
 }
 
-export default {verifyAdminEmailPassword,createAdmin,Login,verifyToken};
+const sendTwilioMessage = async(message,number) =>{
+    const response = await createMessage(message,number);
+    console.log(response)
+    return response;
+}
+
+export default {verifyAdminEmailPassword,createAdmin,Login,verifyToken,sendTwilioMessage};

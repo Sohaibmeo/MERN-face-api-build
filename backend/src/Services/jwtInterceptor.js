@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import config from '../../config.js'
 dotenv.config();
 
 const getnewToken = async(email) => {
     try {
         const user = email;
-        const token = jwt.sign({user},process.env.SECRET_JWT_TOKEN,{ expiresIn: 20 })
+        const token = jwt.sign({user},config.jwtConfig.token,{ expiresIn: 20 })
         return token
     } catch (error) {
         console.log("Problems with token generation",error)

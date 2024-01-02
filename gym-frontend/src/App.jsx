@@ -21,6 +21,8 @@ const App = () => {
     loader()
   },[token,navigate])
 
+
+  //change this no route strategy (its better to redirect them instead)
   return (
     <>
     <Navbar token={token} setToken={setToken}/>

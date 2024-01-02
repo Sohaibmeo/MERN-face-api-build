@@ -24,4 +24,19 @@ const firebaseConfig = {
   "appId": process.env.REACT_APP_FIREBASE_APP_ID
 };
 
-export default {serviceAccount,firebaseConfig};
+const jwtConfig = {
+    token: process.env.SECRET_JWT_TOKEN
+}
+
+const twilioConfigLive = {
+  accountSid: process.env.TWILIO_ACCOUNT_ID,
+  authToken: process.env.TWILIO_AUTH_TOKEN,
+  number: process.env.TWILIO_NUMBER
+}
+
+const twilioTestConfig = {
+  accountSid: process.env.TWILIO_TEST_ACCOUNT_ID,
+  authToken: process.env.TWILIO_TEST_AUTH_TOKEN,
+  number: process.env.TWILIO_NUMBER
+}
+export default {serviceAccount,firebaseConfig,jwtConfig,twilioConfigLive,twilioTestConfig};
