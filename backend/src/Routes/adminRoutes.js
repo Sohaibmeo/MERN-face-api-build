@@ -42,7 +42,7 @@ router.post('/contact',async(req,res)=>{
     try {
         const message = req.body.message;
         const number = req.body.number;
-        const response = await adminController.sendTwilioMessage(message,'+92'+number)
+        const response = await adminController.sendMessage(message,'+92'+number)
         res.send(response)
     } catch (error) {
         console.log(error)
