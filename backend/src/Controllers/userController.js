@@ -21,7 +21,7 @@ async function getAllUser() {
         const response = await docRef.get();
         let responseArr = [];
         response.forEach(doc => {
-           responseArr.push(doc.data());
+           responseArr.push({...doc.data(),id:doc.id});
         });
         console.log("Successfully got all users Length = ", responseArr.length);
         return responseArr;

@@ -6,7 +6,7 @@ dotenv.config();
 const getnewToken = async(email) => {
     try {
         const user = email;
-        const token = jwt.sign({user},config.jwtConfig.token,{ expiresIn: 20 })
+        const token = jwt.sign({user},config.jwtConfig.token,{ expiresIn: 2000 })
         return token
     } catch (error) {
         console.log("Problems with token generation",error)

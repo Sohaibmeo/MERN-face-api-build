@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { initializeFirebaseApp } from './src/Services/firebase.js';
 import userRoutes from './src/Routes/userRoutes.js';
-import adminRoutes from './src/Routes/adminRoutes.js'
+import adminRoutes from './src/Routes/adminRoutes.js';
+import attendanceRoutes from './src/Routes/attendanceRoutes.js'
 import dotenv from 'dotenv';
 // Initialize app
 dotenv.config();
@@ -18,6 +19,7 @@ initializeFirebaseApp();
 //routes and controllers
 app.use('/users', userRoutes);
 app.use('/admin', adminRoutes);
+app.use('/attendance', attendanceRoutes);
 
 
 app.listen(process.env.PORT || 8080,()=> console.log("Server is running on port 8080"));

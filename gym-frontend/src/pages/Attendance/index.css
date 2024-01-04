@@ -4,3 +4,11 @@
     padding-top: 1%;    
     padding-bottom: 1%;
 }
+
+.attendanceTable{
+    display: flex;
+    justify-content: center;
+    overflow-y:auto;
+    height: 600px;
+    width: 60%;
+}
