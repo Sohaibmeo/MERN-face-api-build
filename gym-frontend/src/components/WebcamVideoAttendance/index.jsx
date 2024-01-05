@@ -4,7 +4,7 @@ import * as faceapi from '@vladmandic/face-api';
 import Webcam from 'react-webcam';
 import './index.css'
 
-const WebcamVideoAttendace = ({setLoadingModels, loadingModels,attendanceList,setAttendanceList}) => {
+const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceList}) => {
     const webcamRef = useRef(null);
     const [videoLoaded,setVideoLoaded] = useState(false);
     const [userList, setUserList] = useState([]);
@@ -38,7 +38,6 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels,attendanceList,se
                     const receivedDescriptorArray = new Float32Array(Object.values(result.descriptor));
                     const bestMatch = faceMatcher.findBestMatch(receivedDescriptorArray);
                     const matchedUserID = bestMatch.label;
-                    // you can send it to the baackend
                     if(matchedUserID !== 'unknown'){
                       console.log(matchedUserID,"On : ",getDate())
                       const newUserAttendance = {

@@ -4,11 +4,14 @@ import WebcamVideoAttendace from '../../components/WebcamVideoAttendance';
 
 const Attendance = () => {
     const [loadingModels,setLoadingModels] = useState(true);
-    const [attendanceList,setAttendanceList] = useState({});
+    const [attendanceList,setAttendanceList] = useState({
+        users: [],
+        date: ""
+    });
 
     return(
         <div className='attendanceWrapper'>
-        <WebcamVideoAttendace setLoadingModels={setLoadingModels} loadingModels={loadingModels} attendanceList={attendanceList} setAttendanceList={setAttendanceList}/>
+        <WebcamVideoAttendace setLoadingModels={setLoadingModels} loadingModels={loadingModels} setAttendanceList={setAttendanceList}/>
         {
             loadingModels? <div>Loading</div> :
             <div className='attendanceTable'>
