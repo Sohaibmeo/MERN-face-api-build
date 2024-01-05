@@ -1,5 +1,12 @@
 import { getFirebaseDb,getFirebaseAdmin } from "../Services/firebase.js";
 
+function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${month}:${date}:${year}`;
+}
 const getAllAttendance = async() => {
     try {
         const db= getFirebaseDb();
@@ -23,9 +30,10 @@ const getUserAttendance = async(userId) => {
     }
 }
 
-const getAttendanceByDate = async(date) => {
+const getAttendanceToday = async() => {
     try {
         const db= getFirebaseDb();
+        const date = getDate()
         const response = await db.collection("attendance").doc(date).get()
         return {...response.data(),date: date}
     } catch (error) {
@@ -42,22 +50,17 @@ const setUserAttendance = async() => {
     }
 }
 
-function getDate() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const date = today.getDate();
-    return `${month}:${date}:${year}`;
-  }
 
-const setAttendance = async(userId,date) => {
+
+const setAttendance = async(userId) => {
     try {
         const db = getFirebaseDb();
         const admin = getFirebaseAdmin();
-        const attendanceRef = db.collection("attendance").doc(date);
+        const today = getDate();
+        const attendanceRef = db.collection("attendance").doc(today);
         const userAttendanceRef = db.collection("userAttendance").doc(userId);
         await attendanceRef.update({users: admin.firestore.FieldValue.arrayUnion(userId)},{ merge: true })
-        await userAttendanceRef.update({dates: admin.firestore.FieldValue.arrayUnion(date),lastDate: getDate() },{ merge: true })
+        await userAttendanceRef.update({dates: admin.firestore.FieldValue.arrayUnion(today),lastDate: today },{ merge: true })
         return true;
     } catch (error) {
         console.log("Failure in setting attendance ",error.message)
@@ -65,4 +68,4 @@ const setAttendance = async(userId,date) => {
     }
 }
 
-export default {getAllAttendance,getAttendanceByDate,getUserAttendance,setAttendance,setUserAttendance};
+export default {getAllAttendance,getAttendanceToday,getUserAttendance,setAttendance,setUserAttendance};

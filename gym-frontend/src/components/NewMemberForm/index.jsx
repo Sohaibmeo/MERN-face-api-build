@@ -2,22 +2,20 @@ import './index.css'
 import axios from 'axios'
 
 const NewMemberForm = ({formData,setFormData}) => {
-    //removable code just a counter for id since Not making a backend continously
+    //TODO: removable code just a counter for id since Not making a backend continously
     //So I am thinking a logic where I receive the latest UUID from backend I assign that to the user
     const handleSubmit = async (event) => {
         //Will be designed to pass form data to backend later on...If we capture an image with a face?
         event.preventDefault();
         if(formData.userImage){
-            // here write an api to call the backend here alright?
             try {
                 const response = await axios.post('http://localhost:8080/users/createUser',formData);
-                console.log("Submit this to backend : ", response);
+                console.log("Create User Result : ",response.data)
                 setFormData((prev)=>({...prev,userImage:null}));
             } catch (error) {
                 console.log("Opsie!!");
             }
         }else {
-            console.log("Form Data Without Picture",formData);
             alert('set an image first')
         }
     }
@@ -45,6 +43,13 @@ const NewMemberForm = ({formData,setFormData}) => {
                 onChange={(e) => setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))}
             />
             <div className="singleRowContainer">
+                <input
+                    type='number'
+                    id="user-age"
+                    name="age"
+                    placeholder="Enter age"
+                    onChange={(e) => setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))}
+                />
                 <input
                     type='number'
                     step='0.01'

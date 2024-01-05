@@ -1,30 +1,21 @@
-import axios from 'axios'
 import './index.css'
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { WebsiteNecessaties } from '../../App';
 
 const Home = () => {
-  const [userList,setUserList] = useState([]);
-  const [loading,setLoading] =useState(true);
-
-  useEffect(() => {
-      const getUsers = async() => {
-        try {
-          const response = await axios.get("http://localhost:8080/users");
-          console.log("Users: ", response)
-          setUserList(response.data);
-          setLoading(false)
-        } catch (error) {
-          console.log("Its not working");
-        }
-      }
-      if(loading)
-        getUsers();
-    },[loading])
-
+  const {users} = useContext(WebsiteNecessaties)
+  const userList = users[0]
   return (
     <div className='homeWrapper'>
-      {
-        loading? "Loading": userList.map((data,index)=><li key={index}><img src={data.userImage} alt='Loading'/></li>)
+      { userList ? 
+        userList.map((data,index)=>
+          <li key={index} className='listUser'>
+            <img src={data.userImage} alt='Loading' height={150} width={150}/>
+            <p>Name: {data.firstName+" "+data.lastName}</p>
+            <p>Age: 24</p>
+            <p>Height: {data.height}</p>
+          </li>)
+        : "Loading"
       }
     </div>
   );

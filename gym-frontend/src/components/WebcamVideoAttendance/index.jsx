@@ -1,28 +1,26 @@
+import { useContext, useEffect, useRef, useState } from 'react';
+
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
 import * as faceapi from '@vladmandic/face-api';
 import Webcam from 'react-webcam';
-import './index.css'
 
-const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceList}) => {
+import './index.css'
+import { WebsiteNecessaties } from '../../App'
+//TODO:  we need a loader to wait for userList data and attendance etc from App.jsx
+const WebcamVideoAttendace = ({setLoadingModels, loadingModels}) => {
     const webcamRef = useRef(null);
     const [videoLoaded,setVideoLoaded] = useState(false);
-    const [userList, setUserList] = useState([]);
+    const {users,attendance} = useContext(WebsiteNecessaties)
+    const attendanceList = attendance[0].users;
     const intervalId = useRef(null);
     const videoConstrainst = {
         width: 400,
         height: 600
     }
-    function getDate() {
-      const today = new Date();
-      const month = today.getMonth() + 1;
-      const year = today.getFullYear();
-      const date = today.getDate();
-      // month date year format
-      return `${month}:${date}:${year}`;
-    }
-    //improve this to a better version I think...Also make a seperate component for this
+    //TODO: improve this to a better version I think...Also make a seperate component for this
     const startFaceRecognition = () => {
+      const userList = users[0];
+      const setAttendanceList = attendance[1];
         if(videoLoaded && userList.length > 0){
             const video = document.getElementById('video');
             intervalId.current = setInterval(async ()=>{
@@ -38,18 +36,20 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceLis
                     const receivedDescriptorArray = new Float32Array(Object.values(result.descriptor));
                     const bestMatch = faceMatcher.findBestMatch(receivedDescriptorArray);
                     const matchedUserID = bestMatch.label;
-                    if(matchedUserID !== 'unknown'){
-                      console.log(matchedUserID,"On : ",getDate())
+                    //TODO: I need to stop this next api call saying we have marked your attendance already bro...
+                    const userMarked = attendanceList.find((user) => {
+                      return user===matchedUserID
+                    })
+                    if(matchedUserID !== 'unknown' && !userMarked){
                       const newUserAttendance = {
-                        "userId": matchedUserID,
-                        "date": getDate()
+                        "userId": matchedUserID
                       };
                       const response = await axios.post(`http://localhost:8080/attendance/addRecord`,newUserAttendance);
-                      console.log(" Response : ", response.data)
+                      console.log(" Response : ", response.data,matchedUserID)
                       setAttendanceList(response.data);
                     }
                     else{
-                      console.error("No One Detected : ", matchedUserID)
+                      console.error("Already Marked or Not in Record (inRecord:", userMarked,")")
                     }
                   }catch(error) {
                     console.error("Error During Face Recognition",error)
@@ -71,21 +71,8 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceLis
                 faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
                 faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
             ]).then(() => {
-                const getUsers = async() => {
-                  try {
-                    // maybe use redux for these type of api's to reduce response time
-                    const today= getDate()
-                    const response = await axios.get("http://localhost:8080/users");
-                    const attendance = await axios.get(`http://localhost:8080/attendance/getRecord/${today}`)
-                    setAttendanceList(attendance.data);
-                    setUserList(response.data);
-                    setLoadingModels(false);
-                    console.log("Loading Models and Users");
-                  } catch (error) {
-                    console.log("Its not working");
-                  }
-                }
-                getUsers();
+              setLoadingModels(false);
+              console.log("Models Loaded")
             })
             .catch((error) => {
                 console.error('Error loading models:', error);
@@ -94,9 +81,10 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceLis
         loadModels();
         return () => {
             clearInterval(intervalId.current)
+            setLoadingModels(true)
             console.log("Stopping interval")
         }
-      }, [setLoadingModels,setAttendanceList]);
+      }, [setLoadingModels,attendanceList]);
 
       return (
             <>

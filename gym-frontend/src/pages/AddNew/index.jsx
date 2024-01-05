@@ -5,12 +5,13 @@ import './index.css';
 
 const AddNew = () => {
     const [formData,setFormData] = useState({
-        firstName: "",
-        lastName: "",
+        firstName: "a",
+        lastName: "b",
         email: "@gmail.com",
-        blood: "none",
-        height: 0,
-        weight: 0,
+        blood: "A+",
+        height: 140,
+        weight: 55,
+        age:11,
         gender: "none",
         phoneNumber: 1234567890,
         cnic: 1234567890987,

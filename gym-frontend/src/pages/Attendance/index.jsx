@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './index.css'
 import WebcamVideoAttendace from '../../components/WebcamVideoAttendance';
+import { WebsiteNecessaties } from '../../App';
 
 const Attendance = () => {
     const [loadingModels,setLoadingModels] = useState(true);
-    const [attendanceList,setAttendanceList] = useState({
-        users: [],
-        date: ""
-    });
-
+    const {attendance} = useContext(WebsiteNecessaties)
+    const attendanceList = attendance[0]
     return(
         <div className='attendanceWrapper'>
-        <WebcamVideoAttendace setLoadingModels={setLoadingModels} loadingModels={loadingModels} setAttendanceList={setAttendanceList}/>
+        <WebcamVideoAttendace setLoadingModels={setLoadingModels} loadingModels={loadingModels}/>
         {
             loadingModels? <div>Loading</div> :
             <div className='attendanceTable'>
