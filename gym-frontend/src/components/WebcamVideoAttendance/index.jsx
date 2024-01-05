@@ -74,7 +74,10 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceLis
                 const getUsers = async() => {
                   try {
                     // maybe use redux for these type of api's to reduce response time
+                    const today= getDate()
                     const response = await axios.get("http://localhost:8080/users");
+                    const attendance = await axios.get(`http://localhost:8080/attendance/getRecord/${today}`)
+                    setAttendanceList(attendance.data);
                     setUserList(response.data);
                     setLoadingModels(false);
                     console.log("Loading Models and Users");
@@ -93,7 +96,7 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels, setAttendanceLis
             clearInterval(intervalId.current)
             console.log("Stopping interval")
         }
-      }, [setLoadingModels]);
+      }, [setLoadingModels,setAttendanceList]);
 
       return (
             <>

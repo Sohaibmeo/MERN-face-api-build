@@ -12,6 +12,16 @@ router.post('/addRecord', async(req,res)=>{
     } catch (error) {
         console,log("Issue during api call",error)
     }
+})
+
+router.get('/getRecord/:id', async(req,res)=>{
+    try {
+        const response = await attendanceController.getAttendanceByDate(req.params.id)
+        console.log("Sending data of Single Attendance");
+        res.send(response)
+    } catch (error) {
+        console,log("Issue during api call",error)
+    }
 }) 
 
 export default router;
