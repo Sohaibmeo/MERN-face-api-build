@@ -12,7 +12,7 @@ const App = () => {
   const [token,setToken] = useState("");
   const [userList,setUserList] = useState([])
   const [attendanceList,setAttendanceList] = useState({
-    users: [],
+    users: ["0"],
     date: ""
   })
 

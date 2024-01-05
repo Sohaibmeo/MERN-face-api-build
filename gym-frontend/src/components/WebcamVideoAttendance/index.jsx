@@ -11,7 +11,7 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels}) => {
     const webcamRef = useRef(null);
     const [videoLoaded,setVideoLoaded] = useState(false);
     const {users,attendance} = useContext(WebsiteNecessaties)
-    const attendanceList = attendance[0].users;
+    const attendanceList = attendance[0];
     const intervalId = useRef(null);
     const videoConstrainst = {
         width: 400,
@@ -37,16 +37,24 @@ const WebcamVideoAttendace = ({setLoadingModels, loadingModels}) => {
                     const bestMatch = faceMatcher.findBestMatch(receivedDescriptorArray);
                     const matchedUserID = bestMatch.label;
                     //TODO: I need to stop this next api call saying we have marked your attendance already bro...
-                    const userMarked = attendanceList.find((user) => {
+                    const userMarked = attendanceList.users?.find((user) => {
                       return user===matchedUserID
                     })
                     if(matchedUserID !== 'unknown' && !userMarked){
                       const newUserAttendance = {
                         "userId": matchedUserID
                       };
+                      console.log("We are about to execute")
                       const response = await axios.post(`http://localhost:8080/attendance/addRecord`,newUserAttendance);
                       console.log(" Response : ", response.data,matchedUserID)
-                      setAttendanceList(response.data);
+                      if(response.data.users){
+                        setAttendanceList(response.data);
+                      }else{
+                        setAttendanceList({
+                          users: [],
+                          date: response.data.date
+                        });
+                      }
                     }
                     else{
                       console.error("Already Marked or Not in Record (inRecord:", userMarked,")")

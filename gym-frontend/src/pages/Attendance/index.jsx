@@ -14,7 +14,7 @@ const Attendance = () => {
             loadingModels? <div>Loading</div> :
             <div className='attendanceTable'>
                 
-                <ul><h3>Attendance Today </h3>{attendanceList.users.map((userId,index) => <li key={index} >
+                <ul><h3>Attendance Today </h3>{attendanceList.users && attendanceList.users.map((userId,index) => <li key={index} >
                     <p>User ID: {userId}</p>
                     <p>Date: {attendanceList.date}</p>
                 </li>)}
