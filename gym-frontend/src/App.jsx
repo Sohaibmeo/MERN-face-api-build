@@ -53,7 +53,6 @@ const App = () => {
           console.error("Error :  "+ error.message)
           localStorage.removeItem('token');
           setToken("")
-          navigate('/login')
       }
     }
     const tokenCheck = async () => {
@@ -71,10 +70,9 @@ const App = () => {
     };
 
     tokenCheck()
-    // eslint-disable-next-line
-  },[token])
+    //eslint-disable-next-line
+  },[token,setToken])
 
-  //TODO: change this no route strategy (its better to redirect them instead)
   return (
     <WebsiteNecessaties.Provider value=
     {{

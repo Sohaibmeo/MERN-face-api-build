@@ -1,10 +1,10 @@
 import './index.css'
 import LoginForm from '../../components/LoginForm'
-const Login = ({setToken,token}) => {
+const Login = () => {
 
     return (
         <div className='loginWrapper'>
-            <LoginForm setToken={setToken} token={token}/>
+            <LoginForm />
         </div>
     )
 }

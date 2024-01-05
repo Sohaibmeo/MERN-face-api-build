@@ -10,6 +10,8 @@ import './index.css'
 const LoginForm = () => {
     const navigate = useNavigate();
     const { token } = useContext(WebsiteNecessaties)
+    const [isLoading,setIsLoading] = useState('')
+    let isSubmitting = false
     const [formData,setFormData] = useState({
         "email": "",
         "password": ""
@@ -17,7 +19,12 @@ const LoginForm = () => {
 
     const submitHandler = async(event) => {
         event.preventDefault();
+        setIsLoading('loading')
         try {
+            if (isSubmitting){
+                throw new Error("Previous Login Attempt In Progress")
+            }
+            isSubmitting=true
             const result = await axios.get("http://localhost:8080/admin/login",{
                 auth: {
                     username: formData.email,
@@ -26,19 +33,22 @@ const LoginForm = () => {
             })
             console.log(result)
             if(result?.data?.token){
+                setIsLoading('loaded')
                 const setToken = token[1];
                 const assignedToken = result.data.token;
                 setToken(assignedToken);
                 localStorage.setItem('token',JSON.stringify(assignedToken));
+                isSubmitting=false
                 navigate("/");
             }else {
+                setIsLoading('failed')
                 throw new Error("INVALID TOKEN RECEIVED FROM BACKEND")
             }
         } catch (error) {
             console.error(error);
         }
     }
-    //TODO : Turn this into a loading animation for button when clicked once until the flag says you are gucci
+
     return(
         <form className="formWrapper" onSubmit={submitHandler}>
             <img src={Logo} alt="Logo Enlarged" className="loginLogo"/>
@@ -56,7 +66,7 @@ const LoginForm = () => {
                 className='inputLogin'
                 onChange={(e)=> setFormData((prev)=> ({...prev,[e.target.name]:e.target.value}))}
             />
-            <button type="submit" className='buttonForm'>Login</button>
+            <button disabled={isLoading} type="submit" className='buttonForm' ><span className={`${isLoading}`}>{isLoading ? '' : 'Login'}</span></button>
         </form>
     )
 }
