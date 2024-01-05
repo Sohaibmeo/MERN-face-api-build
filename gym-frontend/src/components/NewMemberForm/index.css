@@ -1,0 +1,15 @@
+.newMemberForm {
+   display: grid;
+   margin: 3%;
+   width: inherit;
+}
+.singleRowContainer {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+}
+.singleRowContainer input,.singleRowContainer select {
+    align-self: stretch;
+    grid-row: 1;
+}

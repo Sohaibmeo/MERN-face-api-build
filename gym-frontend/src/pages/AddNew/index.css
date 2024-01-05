@@ -1,0 +1,14 @@
+.addMemberWrapper {
+    grid-auto-flow: column;
+    display: flex;
+    justify-content: space-around;   
+    align-items: center;
+    width: 97%;
+    height: 83vh;
+}
+@media (max-width : 900px) {
+    .addMemberWrapper{
+        flex-direction: column-reverse;
+        height: auto;
+    }
+}

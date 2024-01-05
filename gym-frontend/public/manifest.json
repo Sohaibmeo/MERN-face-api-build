@@ -1,0 +1,15 @@
+{
+  "short_name": "GymSolution",
+  "name": "Building a solution for gym apps overall in pakistan",
+  "icons": [
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

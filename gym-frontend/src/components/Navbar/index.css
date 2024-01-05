@@ -1,0 +1,62 @@
+.navbarWrapper {
+    transition-duration: 1s;
+    background-color: rgb(12, 12, 12);
+    height: 100px;
+}
+.scrolledDown {
+    transition-duration: 1s;
+    background-color: rgb(12, 12, 12);
+    position: sticky;
+    top: 0;
+    height: 60px;
+}
+.nav,.leftSide {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+}
+p {
+    margin: 0;
+}
+.leftSide a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+}
+.leftSide a img {
+    height: 100%;
+}
+.rightSide {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+}
+.rightSide a {
+    color: #ffffee;
+    height: 100%;
+    margin-right: 3px;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+}
+.rightSide a:hover {
+    color: #f2e53a;
+    transition: 1s;
+}
+.rightSide a p {
+    width: 124px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+}
+.rightSide a:hover {
+    transition: all ease 0.8s;
+    border-bottom: 10px solid #f2e53a;
+}
+
+.loginNavbar{
+    display: none;
+}
