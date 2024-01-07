@@ -1,6 +1,4 @@
-.homeWrapper {
-    height: 200vh;
-}
-.listUser{
+.filters{
     display: flex;
+    justify-content: space-between;
 }

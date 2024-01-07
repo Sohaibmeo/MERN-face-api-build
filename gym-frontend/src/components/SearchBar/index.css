@@ -1,0 +1,14 @@
+.searchBar{
+    position: relative;
+    margin-right: 1.5%;
+    width: 20%;
+}
+.searchBarIcon {
+    position: absolute;
+    right: 0%;
+    top: 25%;
+}
+.searchBarInput {
+    width: 100%;
+    padding-left: 3%;
+}

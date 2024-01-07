@@ -1,0 +1,9 @@
+.filterSearch{
+    position: relative;
+    width: 30%;
+}
+.filterIcon {
+    position: absolute;
+    top: 35%;
+    left: 3%;
+}

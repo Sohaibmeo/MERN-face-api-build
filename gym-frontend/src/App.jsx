@@ -12,7 +12,7 @@ const App = () => {
   const [token,setToken] = useState("");
   const [userList,setUserList] = useState([])
   const [attendanceList,setAttendanceList] = useState({
-    users: ["0"],
+    users: [],
     date: ""
   })
 
@@ -53,6 +53,7 @@ const App = () => {
           console.error("Error :  "+ error.message)
           localStorage.removeItem('token');
           setToken("")
+          navigate("/login")
       }
     }
     const tokenCheck = async () => {

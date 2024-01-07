@@ -1,0 +1,40 @@
+.listUserData{
+    list-style: none;
+    margin: 0;
+    padding: 0 0 1% 0;
+}
+.singleUserData:hover {
+    transform: scale(1.01);
+    box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);
+    transition: transform .25s cubic-bezier(.7,.98,.86,.98);
+    background-color: white;
+}
+.small{
+    width: 45px;
+}
+.medium{
+    width: 180px;
+}
+.large{
+    width: 240px;
+}
+
+.userImage{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+.exampleValues, .singleUserData {
+    max-width: 95%;
+    margin: 1% auto auto auto;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.exampleValues{
+    background-color: rgb(203, 211, 97);
+}
+.singleUserData{
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
