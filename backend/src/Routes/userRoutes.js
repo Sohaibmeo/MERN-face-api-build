@@ -13,6 +13,7 @@ router.get('/singleUser', async(req, res) => {
 });
 
 router.post('/createUser', async(req, res) => {
+    //TODO: add image and descriptor to a seperate dbCollection ok?
     const latestId = await userController.assignUserId()
     console.log("Id to be given to user = ", latestId)
     const response = await userController.createUser(latestId,req.body)

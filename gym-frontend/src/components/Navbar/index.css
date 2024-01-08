@@ -1,14 +1,6 @@
 .navbarWrapper {
-    transition-duration: 1s;
-    background-color: rgb(12, 12, 12);
-    height: 100px;
-}
-.scrolledDown {
-    transition-duration: 1s;
-    background-color: rgb(12, 12, 12);
-    position: sticky;
-    top: 0;
-    height: 60px;
+    background-color: #242526;
+    height: 70px;
 }
 .nav,.leftSide {
     display: flex;
@@ -18,9 +10,11 @@
 p {
     margin: 0;
 }
+a{
+    text-decoration: none;
+}
 .leftSide a {
     display: flex;
-    text-decoration: none;
     color: white;
     align-items: center;
 }
@@ -32,31 +26,69 @@ p {
     justify-content: baseline;
     align-items: center;
 }
-.rightSide a {
+.navMenu {
     color: #ffffee;
-    height: 100%;
     margin-right: 3px;
     display: flex;
-    text-decoration: none;
     align-items: center;
 }
-.rightSide a:hover {
-    color: #f2e53a;
-    transition: 1s;
-}
-.rightSide a p {
+.navLink {
     width: 124px;
     padding: 20px;
     font-size: 20px;
+    justify-content: center;
     font-weight: bolder;
     text-align: center;
     cursor: pointer;
 }
-.rightSide a:hover {
-    transition: all ease 0.8s;
-    border-bottom: 10px solid #f2e53a;
+.navMenu:hover {
+    color: #f2e53a;
+    background: rgba(255, 255, 255, 0.1);
 }
-
 .loginNavbar{
     display: none;
+}
+.dropdown,.dropdownMembers{
+    position: relative;
+    display: inline-block;
+}
+.userIcon{
+    border-radius: 50%;
+    background-color: #fff;
+    border: 5px solid #242526;
+    padding: 14px;
+    margin: 1px;
+    transform: scale(.8);
+}
+.dropdown:hover .userIcon {
+    color: #f2e53a;
+    font-size: 20px;
+    transition: transform 0.2s, opacity 0.2s;
+    transform: scale(0.90);
+    background:rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+.dropdown:hover .dropdownMenu,.dropdownMembers:hover .dropdownMenuMembers{
+    display: block;
+}
+.dropdownMenu, .dropdownMenuMembers{
+    display: none;
+    position: absolute;
+    background-color: #242526;
+    min-width: 100%;
+    z-index: 1;
+}
+.dropdownMenu{
+    left: -50%;
+}
+.dropdownLink {
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 40px 5px 40px;
+    color: #fff;
+}
+.dropdownLink:hover{
+    background:rgba(255, 255, 255, 0.1);
+    color: #f2e53a;
 }
